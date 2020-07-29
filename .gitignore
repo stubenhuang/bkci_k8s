@@ -4,3 +4,5 @@ base_image/jdk/**
 code_image/tmp/**
 deploy_yaml/base/ingress.yaml
 base_image/linux/consul
+other/
+code_image/bkci/
