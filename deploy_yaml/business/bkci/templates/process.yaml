@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bkci-process
+  name: bkci-process
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bkci-process
+  template:
+    metadata:
+      labels:
+        app: bkci-process
+    spec:
+      containers:
+        - image: {{ .Values.image.hub }}/bkci-process:{{ .Values.image.tag }}
+          name: bkci-process
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /data/docker/bkci/ci/backend/
+          command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']

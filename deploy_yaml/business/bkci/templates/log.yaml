@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bkci-log
+  name: bkci-log
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bkci-log
+  template:
+    metadata:
+      labels:
+        app: bkci-log
+    spec:
+      containers:
+        - image: {{ .Values.image.hub }}/bkci-log:{{ .Values.image.tag }}
+          name: bkci-log
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /data/docker/bkci/ci/backend/
+          command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']

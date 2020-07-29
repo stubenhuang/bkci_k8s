@@ -1,0 +1,3 @@
+安装完成.
+
+使用 kubectl get pod |grep 'bkci' 查看各个服务的情况

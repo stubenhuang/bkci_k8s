@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  hub: docker.io
+  tag: "1.0"
+  pullPolicy: Always
+
+volume:
+  nfs:
+    server: 127.0.0.1
+  persistentVolumeReclaimPolicy: Retain
+  storage: 1Gi

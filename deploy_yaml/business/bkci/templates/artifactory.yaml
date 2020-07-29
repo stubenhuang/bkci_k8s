@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-artifactory
+  labels:
+    pv: nfs-artifactory
+spec:
+  capacity:
+    storage: {{ .Values.volume.storage }}
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: {{ .Values.volume.persistentVolumeReclaimPolicy }}
+  storageClassName: nfs-artifactory
+  nfs:
+    path: /data/nfs/artifactory
+    server: {{ .Values.volume.nfs.server }}
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-artifactory
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.volume.storage }}
+  storageClassName: nfs-artifactory
+  selector:
+    matchLabels:
+      pv: nfs-artifactory
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bkci-artifactory
+  name: bkci-artifactory
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bkci-artifactory
+  template:
+    metadata:
+      labels:
+        app: bkci-artifactory
+    spec:
+      containers:
+        - image: {{ .Values.image.hub }}/bkci-artifactory:{{ .Values.image.tag }}
+          name: bkci-artifactory
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /data/docker/bkci/ci/backend/
+          command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']
+          volumeMounts:
+            - mountPath: "/data/docker/bkci/public/ci/artifactory"
+              name: nfs-artifactory
+      volumes: 
+        - name: nfs-artifactory
+          persistentVolumeClaim: 
+            claimName: nfs-artifactory

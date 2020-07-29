@@ -1,0 +1,21 @@
+controller: 
+    image:
+        repository: xbazhen/ingress-nginx-controller
+        digest: 
+    hostNetwork: true ## TODO: 防火墙策略导致CLB无法通NodePort,所以先开启hostPort
+    hostPort:
+        enabled: true
+    kind: DaemonSet
+    nodeSelector: {
+        isIngress: "true"
+    }
+    replicaCount: 
+    minAvailable:
+    service:
+        type: NodePort
+        nodePorts:
+            http: 32080
+            https: 32443
+    admissionWebhooks:
+        enabled: false
+    
