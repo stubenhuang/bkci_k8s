@@ -1,7 +1,7 @@
 env.properties
 base_image/jdk/**
 !base_image/jdk/README.md
-code_image/tmp/**
+code_image/tmp/
 deploy_yaml/base/ingress.yaml
 base_image/linux/consul
 other/
