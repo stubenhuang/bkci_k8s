@@ -51,13 +51,13 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 
 ## 打包基础镜像
 1. 确认本地有安装docker
-2. 进入base_image目录 , 打开buildenv.properties , 修改属性
+2. 进入base_image目录
 3. 执行build.sh
 
 
 ## 打包代码镜像
 1. 确认本地有安装docker,consul
-2. 打开code_image目录 , 修改buildenv.properties
+2. 打开code_image目录 
 3. 修改 bkci/scripts/bkenv.properties 
     - INSTALL_PATH和MODULE不要修改(否则镜像挂载会有问题)
     - 其他的跟自己的环境对应上
@@ -69,12 +69,11 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 
 ## 部署服务
 1. 确定本地安装有helm2 , kubectl(已经配好集群)
-2. 部署基础服务: ingress-nginx和consul
+2. 部署基础服务: ingress-nginx
     - 进入deploy_yaml/base 
     - 执行deploy.sh
 3. 部署代码服务: 
     - 进入deploy_yaml/business
-    - 修改deployenv.properties, 保证仓库能够拉取镜像,保证nfs服务器正常
     - 执行deploy.sh
 
 ## TODO
