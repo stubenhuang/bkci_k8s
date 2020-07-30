@@ -15,6 +15,8 @@ code_image/: 代码镜像
 
 deploy_yaml/: k8s部署
     base/: 基础服务部署
+        consul-nfs.yaml: consul的挂载
+        consul-server.yaml: consul-server的启动
         ingress-nginx: 定制化的ingress-nginx的helm
         ingress.example.yaml: ingress配置模板
         deploy.sh:部署脚本
@@ -56,7 +58,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 
 
 ## 打包代码镜像
-1. 确认本地有安装docker,consul
+1. 确认本地有安装docker,consul,kubectl(已经配好集群)
 2. 打开code_image目录 
 3. 修改 bkci/scripts/bkenv.properties 
     - INSTALL_PATH和MODULE不要修改(否则镜像挂载会有问题)
@@ -79,3 +81,4 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 ## TODO
 1. consul服务放在容器里面, 不然consul-server的探针有问题
 2. 外部服务和内部服务的相互调用 , 采用dns来处理
+3. dockerhost的部署

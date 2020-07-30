@@ -96,5 +96,7 @@ echo '      "value":"'$yaml_base64'"' >> consul_kv.json
 echo '	}' >> consul_kv.json
 echo "properties application finish..."
 echo ']' >> consul_kv.json
-consul kv import --http-addr=$consul_server:8500 @consul_kv.json
+kubectl cp consul_kv.json consul-server-0:/
+kubectl exec -it consul-server-0 -- consul kv import --http-addr=127.0.0.1:8500 @consul_kv.json
+cd ..
 echo '导入backend配置文件完成!!!'

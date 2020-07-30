@@ -16,3 +16,10 @@ spec:
         backend:
           serviceName: bkci-gateway
           servicePort: 80
+  - host: consul.bk.tencent.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: consul-ui
+          servicePort: 80
