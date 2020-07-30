@@ -1,5 +1,7 @@
 ### 目录说明
 ```
+_docs/: 相关文档
+
 base_image/: 基础镜像
     jdk/: jdk目录
     linux/: linux的一些工具
@@ -71,3 +73,7 @@ env.example.properties: 变量配置模板
     - 进入deploy_yaml/business
     - 修改deployenv.properties, 保证仓库能够拉取镜像,保证nfs服务器正常
     - 执行deploy.sh
+
+## 备注
+1. 服务部署在k8s中, consul上会注册服务的内网ip , 导致consul-server的探针和dockerhost一般情况下无法访问到
+    - 建议在网关层解决该问题,给k8s分配特殊网段, 当网关发现是k8s网段的时候转发给k8s的网关
