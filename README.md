@@ -74,6 +74,6 @@ env.example.properties: 变量配置模板
     - 修改deployenv.properties, 保证仓库能够拉取镜像,保证nfs服务器正常
     - 执行deploy.sh
 
-## 备注
-1. 服务部署在k8s中, consul上会注册服务的内网ip , 导致consul-server的探针和dockerhost一般情况下无法访问到
-    - 建议在网关层解决该问题,给k8s分配特殊网段, 当网关发现是k8s网段的时候转发给k8s的网关
+## TODO
+1. consul服务放在容器里面, 不然consul-server的探针有问题
+2. 外部服务和内部服务的相互调用 , 采用dns来处理
