@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-agent-package
+  labels:
+    pv: nfs-agent-package
+spec:
+  capacity:
+    storage: {{ .Values.volume.storage }}
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: {{ .Values.volume.persistentVolumeReclaimPolicy }}
+  storageClassName: nfs-agent-package
+  nfs:
+    path: /data/nfs/agent-package
+    server: {{ .Values.volume.nfs.server }}
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-agent-package
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.volume.storage }}
+  storageClassName: nfs-agent-package
+  selector:
+    matchLabels:
+      pv: nfs-agent-package

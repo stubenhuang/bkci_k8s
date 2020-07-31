@@ -41,14 +41,14 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
     - 共享 /data/nfs目录 
     - mkdir /data/nfs/consul
     - mkdir /data/nfs/artifactory
-    - mkdir /data/nfs/environment
+    - mkdir /data/nfs/agent-package
 4. 所有宿主机需要安装: nfs-common , nfs-utils
 5. 在code_image目录下: 
     - 到https://github.com/Tencent/bk-ci/releases/ 下载最新的release包, 解压
-    - 将 bkci/support-files/file拷贝到 nfs服务器的/data/nfs/artifactory/
-    - 在 nfs服务器的/data/nfs/environment/中,创建agent-package/jre(目录结构参考https://github.com/Tencent/bk-ci/tree/master/support-files/agent-package/jre)
-    - 在 nfs服务器的/data/nfs/environment/中,创建agent-package/packages中(目录结构参考https://github.com/Tencent/bk-ci/tree/master/support-files/agent-package/packages) 
-6. 在nfs服务器/data/nfs/environment/的jre和packages文件夹中, 根据每个目录下的README.md , 将jre.zip和unzip.exe准备好(可以在Windows的git的/usr/bin里面找到)
+    - 将 bkci/support-files/file拷贝到 nfs服务器的/data/nfs/artifactory/file
+    - 在 nfs服务器的/data/nfs/agent-package/中,创建jre/目录(目录结构参考https://github.com/Tencent/bk-ci/tree/master/support-files/agent-package/jre)
+    - 在 nfs服务器的/data/nfs/agent-package/中,创建packages/目录(目录结构参考https://github.com/Tencent/bk-ci/tree/master/support-files/agent-package/packages) 
+6. 在nfs服务器/data/nfs/agent-package/的jre和packages文件夹中, 根据每个目录下的README.md , 将jre.zip和unzip.exe准备好(可以在Windows的git的/usr/bin里面找到)
 7. 复制env.example.properties,命名为env.properties,修改为自己想要的变量
 8. 复制deploy_yaml/base/ingress.example.yaml, 命名为ingress.yaml, 修改自己为自己的域名
 9. 下载consul到base_image/linux/目录下(确保base_image/linux/consul可执行)

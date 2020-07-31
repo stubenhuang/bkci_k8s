@@ -1,35 +1,3 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-environment
-  labels:
-    pv: nfs-environment
-spec:
-  capacity:
-    storage: {{ .Values.volume.storage }}
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: {{ .Values.volume.persistentVolumeReclaimPolicy }}
-  storageClassName: nfs-environment
-  nfs:
-    path: /data/nfs/environment
-    server: {{ .Values.volume.nfs.server }}
---- 
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-environment
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: {{ .Values.volume.storage }}
-  storageClassName: nfs-environment
-  selector:
-    matchLabels:
-      pv: nfs-environment
---- 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -59,8 +27,8 @@ spec:
                /data/docker/bkci/ci/backend/module_run.sh'
           volumeMounts:
             - mountPath: "/data/docker/bkci/public/ci/environment"
-              name: nfs-environment
+              name: nfs-agent-package
       volumes: 
-        - name: nfs-environment
+        - name: nfs-agent-package
           persistentVolumeClaim: 
-            claimName: nfs-environment
+            claimName: nfs-agent-package

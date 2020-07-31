@@ -35,7 +35,7 @@ echo "打包gateway镜像完成!!!"
 
 ## 打包backend镜像
 echo "打包backend镜像开始..."
-backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket)
+backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment)
 for var in ${backends[@]};
 do
     echo "build $var start..."
@@ -46,24 +46,17 @@ do
     cp backend/module_run.sh tmp/
     cp bkci/$var/boot-$var.jar tmp/
 
+    if [ $var = 'environment'] || [ $var = 'dispatch' ]; then
+        cp -rf bkci/agent-package tmp
+        dos2unix tmp/agent-package/script/linux/*
+        dos2unix tmp/agent-package/script/macos/*
+    fi
+
     docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp
     docker push $hub/bkci-$var:1.0
     echo "build $var finish..."
 done
-## 特殊处理: environment
-echo "build environment start..."
-rm -rf tmp/*
-cp -r backend/classpath tmp/
-cp -r backend/bootstrap tmp/
-cp -rf backend/module_run.sh tmp/
-cp -rf bkci/environment/boot-environment.jar tmp/
-cp -rf bkci/agent-package tmp
-dos2unix tmp/agent-package/script/linux/*
-dos2unix tmp/agent-package/script/macos/*
-docker build -f backend/environment.Dockerfile -t $hub/bkci-environment:1.0 tmp
-docker push $hub/bkci-environment:1.0
-echo "build environment finish..."
-echo "打包backend镜像完成!!!"
+
 
 #导入后台配置文件
 echo '导入backend配置文件中...'
