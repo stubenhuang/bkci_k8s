@@ -8,7 +8,7 @@
 ## dockerhost部署
 1. 确保本机能够ssh上dockerhost的机器
 2. dockerhost的机器安装有jdk8且可以运行java(建议使用https://github.com/Tencent/TencentKona-8/releases)
-3. 在dockerhost机器上创建worker-agent的目录:
+3. 在dockerhost机器上创建以下目录,提供给worker-agent挂载:
     - /data/docker/bkci/public/ci/docker/workspace : 用于存放构建的数据
     - /data/docker/bkci/public/ci/docker/apps/ : 用于创建构建的依赖(比如go , maven , gradle等,这个在另一个平台上编辑)
     - 在/data/docker/bkci/public/ci/docker/apps/上放上jdk目录 , 并且确定/data/docker/bkci/public/ci/docker/apps/jdk/bin/java 可以运行
