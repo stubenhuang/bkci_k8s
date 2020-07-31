@@ -79,6 +79,13 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
     - 进入deploy_yaml/business
     - 执行deploy.sh
 
+## 构建机部署
+详情见 [构建机部署](code_image/dockerhost/README.md)
+
+## 其他
+1. [架构](_docs/架构.md)
+2. [镜像分层](_docs/镜像分层.md)
+
 ## TODO
 1. consul服务放在容器里面, 不然consul-server的探针有问题
 2. 外部服务和内部服务的相互调用 , 采用dns来处理
