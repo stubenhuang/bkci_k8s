@@ -13,5 +13,5 @@
     - /data/docker/bkci/public/ci/docker/workspace : 用于存放构建的数据
     - /data/docker/bkci/public/ci/docker/apps/ : 用于创建构建的依赖(比如go , maven , gradle等,这个在另一个平台上编辑)
     - 在/data/docker/bkci/public/ci/docker/apps/上放上jdk目录 , 并且确定/data/docker/bkci/public/ci/docker/apps/jdk/bin/java 可以运行
-5. 执行deploy.sh
+5. 执行deploy.sh , 到dockerhost机器上确保机器启动成功
 6. 在"研发商店"-->"工作台"-->"容器镜像"关联自己的镜像 , 上架成功后 , 即可在"流水线"的"公共构建机"上找到该镜像
