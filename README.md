@@ -1,7 +1,7 @@
-### 概述
+## 概述
 [Tencent/bk-ci](https://github.com/Tencent/bk-ci) 的k8s构建工具
 
-### 目录
+## 目录
 ```
 _docs/: 相关文档
 
@@ -31,10 +31,10 @@ deploy_yaml/: k8s部署
 env.example.properties: 变量配置模板
 ```
 
-### 注意
+## 注意
 ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这里只是作为DEMO方案展示
 
-### 环境准备:
+## 环境准备:
 1. 搭建好k8s集群
 2. 安装mysql5.7, redis2.8, rabbitmq3.8, es5.6, consul1.8
 3. 找一台物理机器安装nfs
