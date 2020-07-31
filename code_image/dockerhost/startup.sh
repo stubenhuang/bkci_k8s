@@ -27,7 +27,7 @@ nohup java  \
     -Dservice-suffix=ci \
     -Ddevops_gateway=devops.bk.tencent.com \
     -Dspring.cloud.config.enabled=false \
-    -Dspring.config.location=resources/application.yaml,resources/dockerhost.yaml \ 
+    -Dspring.config.location=resources/application.yaml,resources/dockerhost.yaml \
     -jar boot-dockerhost.jar& \
 echo "$!"
 echo "$!" > pid
