@@ -83,7 +83,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 3. 执行deploy.sh
 
 ## 构建机部署
-详情见 [构建机部署](code_image/dockerhost/README.md)
+详情见 [构建机部署](code_image/dockerhost/)
 
 ## 其他
 1. [架构](_docs/架构.md)
