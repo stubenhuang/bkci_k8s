@@ -60,9 +60,13 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 2. 进入base_image目录
 3. 执行build.sh
 
+## 部署基础服务
+1. 确定本地安装有helm2 , kubectl(已经配好集群)
+2. 进入deploy_yaml/base 
+3. 执行deploy.sh
 
 ## 打包代码镜像
-1. 确认本地有安装docker,consul,kubectl(已经配好集群)
+1. 确认本地有安装docker,kubectl(已经配好集群)
 2. 打开code_image目录 
 3. 修改 bkci/scripts/bkenv.properties 
     - INSTALL_PATH和MODULE不要修改(否则镜像挂载会有问题)
@@ -73,14 +77,10 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
     - rabbitmqctl set_permissions -p ${RABBITMQ_VHOST} ${RABBITMQ_USERNAME} ".*" ".*" ".*"
 
 
-## 部署服务
+## 部署业务服务
 1. 确定本地安装有helm2 , kubectl(已经配好集群)
-2. 部署基础服务: ingress-nginx
-    - 进入deploy_yaml/base 
-    - 执行deploy.sh
-3. 部署代码服务: 
-    - 进入deploy_yaml/business
-    - 执行deploy.sh
+2. 进入deploy_yaml/business
+3. 执行deploy.sh
 
 ## 构建机部署
 详情见 [构建机部署](code_image/dockerhost/README.md)
@@ -90,6 +90,4 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 2. [镜像分层](_docs/镜像分层.md)
 
 ## TODO
-1. consul服务放在容器里面, 不然consul-server的探针有问题
-2. 外部服务和内部服务的相互调用 , 采用dns来处理
-3. dockerhost的部署
+1. 外部服务和内部服务的相互调用 , 采用dns来处理
