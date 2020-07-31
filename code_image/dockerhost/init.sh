@@ -13,5 +13,5 @@ echo "download docker_init.sh success, start it..." >> logs/docker.log
 #export PATH="/usr/local/jre/bin:${PATH}"
 cat docker_init.sh >> logs/docker.log
 
-ln -s /data/devops/apps/jdk /usr/local/jre
+ln -s /data/devops/apps/jdk /usr/local/jre #记得在宿主机上挂载/data/docker/bkci/public/ci/docker/apps/jdk
 sh docker_init.sh $@
