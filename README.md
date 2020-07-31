@@ -49,6 +49,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 7. 复制env.example.properties,命名为env.properties,修改为自己想要的变量
 8. 复制deploy_yaml/base/ingress.example.yaml, 命名为ingress.yaml, 修改自己为自己的域名
 9. 下载consul到base_image/linux/目录下(确保base_image/linux/consul可执行)
+10. 下载jdk8到 base_image/jdk/目录下 (确保base_image/jdk/bin/java可执行 , 推荐使用https://github.com/Tencent/TencentKona-8/releases)
 
 
 ## 打包基础镜像
