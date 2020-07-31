@@ -1,3 +1,24 @@
 #! /bin/sh
 nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=consul-server &
-java -cp boot-$module.jar -Dservice-suffix=ci -Dloader.path="/data/docker/bkci/ci/backend/classpath/" org.springframework.boot.loader.PropertiesLauncher --spring.profiles.active=dev --spring.cloud.config.enabled=false --spring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml
+mkdir -p /data/docker/bkci/ci/backend/logs
+java -cp boot-$module.jar \
+    -server \
+    -Xloggc:/data/docker/bkci/ci/backend/logs/gc.log \
+    -XX:NewRatio=1 \
+    -XX:SurvivorRatio=8 \
+    -XX:+PrintTenuringDistribution \
+    -XX:+PrintGCDetails \
+    -XX:+PrintGCDateStamps \
+    -XX:+UseConcMarkSweepGC \
+    -XX:+HeapDumpOnOutOfMemoryError \
+    -XX:HeapDumpPath=oom.hprof \
+    -XX:ErrorFile=error_sys.log \
+    -Dservice-suffix=ci \
+    -Dloader.path="/data/docker/bkci/ci/backend/classpath/" \
+    -Dspring.profiles.active=dev \
+    -Dspring.cloud.config.enabled=false \
+    -Dservice.log.dir=/data/docker/bkci/ci/backend/logs/ \
+    -Dsun.jnu.encoding=UTF-8 \
+    -Dfile.encoding=UTF-8 \
+    -Dspring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml \
+    org.springframework.boot.loader.PropertiesLauncher
