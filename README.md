@@ -1,4 +1,7 @@
-### 目录说明
+### 概述
+[Tencent/bk-ci](https://github.com/Tencent/bk-ci) 的k8s构建工具
+
+### 目录
 ```
 _docs/: 相关文档
 
