@@ -10,10 +10,10 @@ source bkci/scripts/bkenv.properties
 mkdir -p tmp && rm -rf tmp/*
 echo "导入环境变量完成!!!"
 
-# ## 初始化数据库
-# echo "初始化数据库开始..."
-# for SQL in bkci/support-files/sql/*.sql; do mysql -h$MYSQL_IP0 -P$MYSQL_PORT  -u$MYSQL_USER -p$MYSQL_PASS< $SQL; done
-# echo "初始化数据库完成!!!"
+## 初始化数据库
+echo "初始化数据库开始..."
+for SQL in bkci/support-files/sql/*.sql; do mysql -h$MYSQL_IP0 -P$MYSQL_PORT  -u$MYSQL_USER -p$MYSQL_PASS< $SQL; done
+echo "初始化数据库完成!!!"
 
 ##打包gateway镜像
 echo "打包gateway镜像开始..."
@@ -27,36 +27,36 @@ docker build -f gateway/gateway.Dockerfile -t $hub/gateway:1.0 ./tmp --network=h
 docker push $hub/gateway:1.0
 echo "打包gateway镜像完成!!!"
 
-# ## 打包backend镜像
-# echo "打包backend镜像开始..."
-# backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment)
-# for var in ${backends[@]};
-# do
-#     echo "build $var start..."
+## 打包backend镜像
+echo "打包backend镜像开始..."
+backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment)
+for var in ${backends[@]};
+do
+    echo "build $var start..."
 
-#     rm -rf tmp/*
-#     cp -r backend/classpath tmp/
-#     cp -r backend/bootstrap tmp/
-#     cp backend/module_run.sh tmp/
-#     cp bkci/$var/boot-$var.jar tmp/
+    rm -rf tmp/*
+    cp -r backend/classpath tmp/
+    cp -r backend/bootstrap tmp/
+    cp backend/module_run.sh tmp/
+    cp bkci/$var/boot-$var.jar tmp/
 
-#     if [ $var = 'environment'] || [ $var = 'dispatch' ]; then
-#         cp -rf bkci/agent-package tmp
-#         dos2unix tmp/agent-package/script/linux/*
-#         dos2unix tmp/agent-package/script/macos/*
-#     fi
+    if [ $var = 'environment'] || [ $var = 'dispatch' ]; then
+        cp -rf bkci/agent-package tmp
+        dos2unix tmp/agent-package/script/linux/*
+        dos2unix tmp/agent-package/script/macos/*
+    fi
 
-#     docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp
-#     docker push $hub/bkci-$var:1.0
-#     echo "build $var finish..."
-# done
+    docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp
+    docker push $hub/bkci-$var:1.0
+    echo "build $var finish..."
+done
 
 ## 打包配置镜像
-# echo '打包配置镜像中...'
-# rm -rf tmp/*
-# cp -rf bkci/support-files tmp/
-# cp -rf configuration/import_config.sh tmp/ 
-# cp -rf configuration/render_tpl tmp/ 
-# docker build -f configuration/configuration.Dockerfile -t $hub/bkci-configuration:1.0 tmp --no-cache
-# docker push $hub/bkci-configuration:1.0
-# echo '打包配置镜像完成!!!'
+echo '打包配置镜像中...'
+rm -rf tmp/*
+cp -rf bkci/support-files tmp/
+cp -rf configuration/import_config.sh tmp/ 
+cp -rf configuration/render_tpl tmp/ 
+docker build -f configuration/configuration.Dockerfile -t $hub/bkci-configuration:1.0 tmp --no-cache
+docker push $hub/bkci-configuration:1.0
+echo '打包配置镜像完成!!!'

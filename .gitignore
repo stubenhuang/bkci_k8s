@@ -7,3 +7,4 @@ base_image/linux/consul
 other/
 code_image/bkci/
 code_image/dockerhost/deployenv.properties
+deploy_yaml/business/values.yaml
