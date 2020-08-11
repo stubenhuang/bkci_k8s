@@ -20,6 +20,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           workingDir: /usr/local/openresty/nginx/
           command: ['/bin/sh','-c','/data/docker/bkci/ci/gateway/gateway_run.sh']
+          env:
+            - name: INSTALL_PATH
+              value: /data/docker/bkci
+            - name: MODULE
+              value: ci
+            - name: AUTH_PROVIDER
+              value: sample
+            {{- range $key, $value := .Values.env }}
+            - name : {{ $key }}
+              value : "{{ $value }}"
+            {{- end}}
 ---
 apiVersion: v1
 kind: Service

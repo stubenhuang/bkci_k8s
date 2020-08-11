@@ -21,14 +21,8 @@ rm -rf tmp/*
 cp -rf bkci/frontend tmp/
 cp -rf bkci/gateway/core tmp/gateway
 cp -rf gateway/gateway_run.sh tmp/
-cd bkci/scripts/
-./render_tpl -m ci ../support-files/templates/gateway*
-./render_tpl -m ci ../frontend/pipeline/frontend#pipeline#index.html
-./render_tpl -m ci ../frontend/console/frontend#console#index.html
-cd ../..
-cp -r $INSTALL_PATH/ci/gateway/core/* tmp/gateway/
-cp $INSTALL_PATH/ci/frontend/pipeline/index.html tmp/frontend/pipeline/
-cp $INSTALL_PATH/ci/frontend/console/index.html tmp/frontend/console/
+cp -rf gateway/render_tpl tmp/
+cp -rf bkci/support-files tmp/
 docker build -f gateway/gateway.Dockerfile -t $hub/gateway:1.0 ./tmp --network=host
 docker push $hub/gateway:1.0
 echo "打包gateway镜像完成!!!"
