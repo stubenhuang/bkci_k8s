@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configuration
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: configuration
+        image: {{ .Values.image.hub }}/bkci-configuration:{{ .Values.image.tag }}
+        workingDir: /data/docker/bkci/ci/configuration/
+        imagePullPolicy: Always
+        command: ['/bin/sh','-c','/data/docker/bkci/ci/configuration/import_config.sh']
+        env:
+          - name: INSTALL_PATH
+            value: /data/docker/bkci
+          - name: MODULE
+            value: ci
+          - name: AUTH_PROVIDER
+            value: sample
+          {{- range $key, $value := .Values.env }}
+          - name : {{ $key }}
+            value : "{{ $value }}"
+          {{- end}}
+      restartPolicy: Never
+  backoffLimit: 4
