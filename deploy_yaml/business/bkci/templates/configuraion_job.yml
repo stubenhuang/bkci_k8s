@@ -13,7 +13,7 @@ spec:
       - name: configuration
         image: {{ .Values.image.hub }}/bkci-configuration:{{ .Values.image.tag }}
         workingDir: /data/docker/bkci/ci/configuration/
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ['/bin/sh','-c','/data/docker/bkci/ci/configuration/import_config.sh']
         env:
           - name: INSTALL_PATH
