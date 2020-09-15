@@ -75,6 +75,9 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 5. 根据bkci/scripts/bkenv.properties 变量 , 在rabbitmq中执行:
     - rabbitmqctl add_vhost ${RABBITMQ_VHOST}
     - rabbitmqctl set_permissions -p ${RABBITMQ_VHOST} ${RABBITMQ_USERNAME} ".*" ".*" ".*"
+6. rabbitmq需要安装rabbitmq_delayed_message_exchange插件:
+    - 网址 : https://github.com/rabbitmq/rabbitmq-rtopic-exchange/releases
+    - 放到rabbitmq的plugins目录下 , 然后执行```rabbitmq-plugins enable rabbitmq_delayed_message_exchange```
 
 
 ## 部署业务服务
