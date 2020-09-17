@@ -47,7 +47,7 @@ do
         dos2unix tmp/agent-package/script/macos/*
     fi
 
-    docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp --network=host
+    docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp
     docker push $hub/bkci-$var:1.0
     echo "build $var finish..."
 done
