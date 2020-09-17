@@ -37,6 +37,7 @@ do
     rm -rf tmp/*
     cp -r backend/classpath tmp/
     cp -r backend/bootstrap tmp/
+    cp -r backend/font tmp/
     cp backend/module_run.sh tmp/
     cp bkci/$var/boot-$var.jar tmp/
 
@@ -46,7 +47,7 @@ do
         dos2unix tmp/agent-package/script/macos/*
     fi
 
-    docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp
+    docker build -f backend/$var.Dockerfile -t $hub/bkci-$var:1.0 tmp --network=host
     docker push $hub/bkci-$var:1.0
     echo "build $var finish..."
 done
