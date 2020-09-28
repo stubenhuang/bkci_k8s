@@ -6,5 +6,7 @@ deploy_yaml/base/ingress.yaml
 base_image/linux/consul
 other/
 code_image/bkci/
+code_image/bkci_new/
+code_image/bkci_old/
 code_image/dockerhost/deployenv.properties
 deploy_yaml/business/values.yaml

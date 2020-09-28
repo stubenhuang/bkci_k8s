@@ -20,6 +20,5 @@ java -cp boot-$module.jar \
     -Dservice.log.dir=/data/docker/bkci/ci/backend/logs/ \
     -Dsun.jnu.encoding=UTF-8 \
     -Dfile.encoding=UTF-8 \
-    -Dspring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml,classpath:/application.yml \
-    -Dspring.main.allow-bean-definition-overriding=true \
+    -Dspring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml \
     org.springframework.boot.loader.PropertiesLauncher
