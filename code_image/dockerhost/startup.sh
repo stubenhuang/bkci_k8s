@@ -27,7 +27,10 @@ nohup java  \
     -Dservice-suffix=ci \
     -Ddevops_gateway=devops.bk.tencent.com \
     -Dspring.cloud.config.enabled=false \
-    -Dspring.config.location=resources/application.yaml,resources/dockerhost.yaml \
-    -jar boot-dockerhost.jar&
+    -Dspring.config.location=resources/application.yaml,resources/dockerhost.yaml,classpath:/application.yml \
+    -Dspring.main.allow-bean-definition-overriding=true \
+    -Dspring.cloud.consul.enabled=false \
+    -jar boot-dockerhost.jar &
 echo "$!"
 echo "$!" > pid
+exit
