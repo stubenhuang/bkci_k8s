@@ -22,4 +22,5 @@ java -cp boot-$module.jar \
     -Dfile.encoding=UTF-8 \
     -Dspring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml,classpath:/application.yml \
     -Dspring.main.allow-bean-definition-overriding=true \
+    -Dspring.jmx.enabled=true \
     org.springframework.boot.loader.PropertiesLauncher

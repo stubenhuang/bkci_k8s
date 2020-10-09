@@ -13,7 +13,7 @@ echo "导入环境变量完成"
 ## 初始化数据库
 echo "初始化数据库开始..."
 for SQL in bkci/support-files/sql/*.sql; do mysql -h$MYSQL_IP0 -P$MYSQL_PORT  -u$MYSQL_USER -p$MYSQL_PASS< $SQL; done
-echo "初始化数据库完成!!!"
+echo "初始化数据库完成"
 
 ##打包gateway镜像
 echo "打包gateway镜像开始..."
@@ -22,10 +22,11 @@ cp -rf bkci/frontend tmp/
 cp -rf bkci/gateway/core tmp/gateway
 cp -rf gateway/gateway_run.sh tmp/
 cp -rf gateway/render_tpl tmp/
+cp -rf base/new_env.properties tmp/
 cp -rf bkci/support-files tmp/
 docker build -f gateway/gateway.Dockerfile -t $hub/gateway:1.0 ./tmp --network=host
 docker push $hub/gateway:1.0
-echo "打包gateway镜像完成!!!"
+echo "打包gateway镜像完成"
 
 ## 打包backend镜像
 echo "打包backend镜像开始..."
@@ -58,7 +59,7 @@ rm -rf tmp/*
 cp -rf bkci/support-files tmp/
 cp -rf configuration/import_config.sh tmp/ 
 cp -rf configuration/render_tpl tmp/ 
-cp -rf configuration/new_env.properties tmp/
+cp -rf base/new_env.properties tmp/
 docker build -f configuration/configuration.Dockerfile -t $hub/bkci-configuration:1.0 tmp --no-cache
 docker push $hub/bkci-configuration:1.0
-echo '打包配置镜像完成!!!'
+echo '打包配置镜像完成'
