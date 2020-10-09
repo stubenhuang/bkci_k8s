@@ -7,3 +7,4 @@ ssh -p $dockerhost_port $dockerhost_user@$dockerhost_ip "mkdir -p /data/docker/b
 scp -P $dockerhost_port ../bkci/dockerhost/boot-dockerhost.jar startup.sh $dockerhost_user@$dockerhost_ip:/data/docker/bkci/ci/dockerhost/
 scp -P $dockerhost_port init.sh $dockerhost_user@$dockerhost_ip:/data/docker/bkci/ci/agent-package/script/
 ssh -p $dockerhost_port $dockerhost_user@$dockerhost_ip "/bin/sh -c /data/docker/bkci/ci/dockerhost/startup.sh"
+echo "finish"
