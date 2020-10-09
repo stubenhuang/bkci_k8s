@@ -8,3 +8,4 @@ other/
 code_image/bkci/
 code_image/dockerhost/deployenv.properties
 deploy_yaml/business/values.yaml
+code_image/bkci_old
