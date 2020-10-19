@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bkci-dockerhost
+  name: bkci-dockerhost
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bkci-dockerhost
+  template:
+    metadata:
+      labels:
+        app: bkci-dockerhost
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - image: {{ .Values.image.hub }}/bkci-dockerhost:{{ .Values.image.tag }} 
+          name: bkci-dockerhost
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /data/docker/bkci/ci/backend/
+          command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']
+          env:
+            - name: BKCI_FQDN
+              value: {{ .Values.env.BKCI_FQDN }}
+          volumeMounts:
+            - name: dockersock
+              mountPath: /var/run/docker.sock
+            - name: script
+              mountPath: /data/docker/bkci/ci/agent-package/script/
+            - name: jdk
+              mountPath: /data/docker/bkci/public/ci/docker/apps/
+      volumes:
+        - name: dockersock
+          hostPath:
+            path: /var/run/docker.sock
+        - name: script
+          hostPath:
+            path: /data/docker/bkci/ci/agent-package/script/
+        - name: jdk
+          hostPath:
+            path: /data/docker/bkci/public/ci/docker/apps/
