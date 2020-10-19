@@ -30,7 +30,7 @@ echo "打包gateway镜像完成"
 
 ## 打包backend镜像
 echo "打包backend镜像开始..."
-backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment)
+backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment dockerhost)
 for var in ${backends[@]};
 do
     echo "build $var start..."
@@ -39,8 +39,15 @@ do
     cp -r backend/classpath tmp/
     cp -r backend/bootstrap tmp/
     cp -r backend/font tmp/
-    cp backend/module_run.sh tmp/
     cp bkci/$var/boot-$var.jar tmp/
+
+    if [ $var = 'dockerhost' ]; then
+        cp backend/dockerhost/module_run.sh tmp/
+        cp backend/dockerhost/init.sh tmp/
+        cp -r ../base_image/jdk tmp/
+    else
+        cp backend/module_run.sh tmp/
+    fi
 
     if [ $var = 'environment' ] || [ $var = 'dispatch' ]; then
         cp -rf bkci/agent-package tmp
