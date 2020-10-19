@@ -10,3 +10,4 @@ code_image/bkci_new/
 code_image/bkci_old/
 code_image/dockerhost/deployenv.properties
 deploy_yaml/business/values.yaml
+code_image/dockerhost_old/deployenv.properties
