@@ -86,9 +86,6 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 3. 根据自己的需要,复制values.example.yaml到values.yaml, 修改values.yaml的属性
 4. 执行deploy.sh
 
-## 构建机部署
-详情见 [构建机部署](code_image/dockerhost/)
-
 ## DNS
 1. 外部服务和内部服务的相互调用 , 采用dns来处理
 2. 可以使用dnsmasq搭建dns服务, 将k8s和其他相关的物理机的resolve指向这台dns
