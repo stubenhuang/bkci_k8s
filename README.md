@@ -86,6 +86,10 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 3. 根据自己的需要,复制values.example.yaml到values.yaml, 修改values.yaml的属性
 4. 执行deploy.sh
 
+## 关于dockerhost
+1. dockerhost是管理docker容器的一个agent , 目前的方案是将宿主机的docker挂载到dockerhost的pod里面 , 且pod使用hostNetwork
+2. dockerhost必须手动插入数据表devops_ci_dispatch.T_DISPATCH_PIPELINE_DOCKER_IP_INFO , 防止恶意注册 , ip为宿主机IP
+
 ## DNS
 1. 外部服务和内部服务的相互调用 , 采用dns来处理
 2. 可以使用dnsmasq搭建dns服务, 将k8s和其他相关的物理机的resolve指向这台dns
