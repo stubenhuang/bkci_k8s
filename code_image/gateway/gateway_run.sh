@@ -7,6 +7,6 @@ $INSTALL_PATH/ci/gateway/render_tpl -m ci $INSTALL_PATH/ci/frontend/console/fron
 cp -rf $INSTALL_PATH/ci/gateway/core/* $INSTALL_PATH/ci/gateway/
 
 ##启动程序
-nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=consul-server &
+nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=$CONSUL_SERVER &
 /usr/local/openresty/nginx/sbin/nginx 
 tail -f /dev/null

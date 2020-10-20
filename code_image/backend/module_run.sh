@@ -1,5 +1,5 @@
 #! /bin/sh
-nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=consul-server &
+nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=$CONSUL_SERVER &
 mkdir -p /data/docker/bkci/ci/backend/logs
 java -cp boot-$module.jar \
     -server \

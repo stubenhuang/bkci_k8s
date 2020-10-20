@@ -27,6 +27,8 @@ spec:
               value: ci
             - name: AUTH_PROVIDER
               value: sample
+            - name: CONSUL_SERVER
+              value: {{ .Values.consul.server }}
             {{- range $key, $value := .Values.env }}
             - name : {{ $key }}
               value : "{{ $value }}"

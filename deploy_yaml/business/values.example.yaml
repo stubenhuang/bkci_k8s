@@ -7,6 +7,9 @@ mysql:
     user: root
     password: root
 
+consul:
+    server: consul-server #consul server的host或者IP
+
 env:
     ##########
     #基础配置

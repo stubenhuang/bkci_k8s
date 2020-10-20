@@ -29,6 +29,9 @@ spec:
             - 'ln -s /data/docker/bkci/public/ci/dispatch/packages /data/docker/bkci/ci/agent-package/packages ; 
                ln -s /data/docker/bkci/public/ci/dispatch/jre /data/docker/bkci/ci/agent-package/jre ;
                /data/docker/bkci/ci/backend/module_run.sh'
+          env:
+            - name: CONSUL_SERVER
+              value: {{ .Values.consul.server }}
           volumeMounts:
             - mountPath: "/data/docker/bkci/public/ci/dispatch"
               name: nfs-agent-package

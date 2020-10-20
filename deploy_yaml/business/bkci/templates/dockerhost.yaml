@@ -29,6 +29,8 @@ spec:
           env:
             - name: BK_CI_PRIVATE_HOST
               value: {{ .Values.env.BK_CI_PRIVATE_HOST }}
+            - name: CONSUL_SERVER
+              value: {{ .Values.consul.server }}
           volumeMounts:
             - name: dockersock
               mountPath: /var/run/docker.sock

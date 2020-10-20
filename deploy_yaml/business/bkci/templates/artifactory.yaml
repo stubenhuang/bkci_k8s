@@ -52,6 +52,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           workingDir: /data/docker/bkci/ci/backend/
           command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']
+          env:
+            - name: CONSUL_SERVER
+              value: {{ .Values.consul.server }}
           volumeMounts:
             - mountPath: "/data/docker/bkci/public/ci/artifactory"
               name: nfs-artifactory
