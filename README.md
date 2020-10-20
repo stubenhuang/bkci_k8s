@@ -81,7 +81,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 
 
 ## 部署业务服务
-1. 确定本地安装有helm2 , kubectl(已经配好集群)
+1. 确定本地安装有helm3 , kubectl(已经配好集群)
 2. 进入deploy_yaml/business
 3. 根据自己的需要,复制values.example.yaml到values.yaml, 修改values.yaml的属性
 4. 执行deploy.sh
