@@ -1,3 +1,7 @@
+##初始化数据库
+for SQL in /data/docker/bkci/ci/configuration/support-files/sql/*.sql; do mysql -h$MYSQL_IP -P$MYSQL_PORT  -u$MYSQL_USER -p$MYSQL_PASS< $SQL; done
+
+## 初始化配置
 ./render_tpl -m ci ./support-files/templates/*.yml
 backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket dockerhost environment auth sign monitoring)
 cd ..
@@ -24,4 +28,4 @@ echo '	}' >> consul_kv.json
 echo "properties application finish..."
 echo ']' >> consul_kv.json
 
-consul kv import --http-addr=$BK_CI_CONSUL_SERVER:8500 @consul_kv.json
+consul kv import --http-addr=consul-server:8500 @consul_kv.json

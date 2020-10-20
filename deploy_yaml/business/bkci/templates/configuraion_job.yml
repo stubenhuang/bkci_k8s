@@ -22,6 +22,14 @@ spec:
             value: ci
           - name: AUTH_PROVIDER
             value: sample
+          - name: MYSQL_IP
+            value: "{{ .Values.mysql.host }}"
+          - name: MYSQL_PORT
+            value: "{{ .Values.mysql.port }}"
+          - name: MYSQL_USER
+            value: "{{ .Values.mysql.user }}"
+          - name: MYSQL_PASS
+            value: "{{ .Values.mysql.password }}"
           {{- range $key, $value := .Values.env }}
           - name : {{ $key }}
             value : "{{ $value }}"

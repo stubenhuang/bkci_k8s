@@ -16,6 +16,10 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      hostAliases:
+        - ip: "{{ .Values.host.BK_CI_PRIVATE_IP }}"
+          hostnames:
+          - "{{ .Values.env.BK_CI_PRIVATE_HOST }}"
       containers:
         - image: {{ .Values.image.hub }}/bkci-dockerhost:{{ .Values.image.tag }} 
           name: bkci-dockerhost
@@ -23,8 +27,8 @@ spec:
           workingDir: /data/docker/bkci/ci/backend/
           command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']
           env:
-            - name: BKCI_FQDN
-              value: {{ .Values.env.BKCI_FQDN }}
+            - name: BK_CI_PRIVATE_HOST
+              value: {{ .Values.env.BK_CI_PRIVATE_HOST }}
           volumeMounts:
             - name: dockersock
               mountPath: /var/run/docker.sock

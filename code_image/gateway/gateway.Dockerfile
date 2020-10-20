@@ -5,7 +5,6 @@ LABEL maintainer="blueking"
 COPY gateway /data/docker/bkci/ci/gateway
 COPY gateway_run.sh /data/docker/bkci/ci/gateway/
 COPY render_tpl /data/docker/bkci/ci/gateway/
-COPY new_env.properties /data/docker/bkci/ci/gateway/
 COPY support-files /data/docker/bkci/ci/gateway/support-files
 COPY frontend /data/docker/bkci/ci/frontend
 

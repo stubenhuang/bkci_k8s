@@ -6,8 +6,8 @@ consul kv get -http-addr=consul-ui config/application:dev/data > resources/appli
 consul kv get -http-addr=consul-ui config/dockerhostci:dev/data > resources/dockerhost.yaml
 
 # build init.sh to hosted which will be used in container
-hosts=$(ping -c 1 $BKCI_FQDN|head -1|egrep -o "([0-9]{1,3}.){3}[0-9]{1,3}")
-hosts="$hosts $BKCI_FQDN"
+hosts=$(ping -c 1 $BK_CI_PRIVATE_HOST|head -1|egrep -o "([0-9]{1,3}.){3}[0-9]{1,3}")
+hosts="$hosts $BK_CI_PRIVATE_HOST"
 template=$(cat /base/init.sh) && echo "${template/__hosts__/$hosts}" > /data/docker/bkci/ci/agent-package/script/init.sh
 
 # cp jdk to hosted whick will be used in container
@@ -30,7 +30,7 @@ java  \
     -Dsun.jnu.encoding=UTF-8 \
     -Dfile.encoding=UTF-8 \
     -Dservice-suffix=ci \
-    -Ddevops_gateway=$BKCI_FQDN \
+    -Ddevops_gateway=$BK_CI_PRIVATE_HOST \
     -Dspring.cloud.config.enabled=false \
     -Dspring.config.location=resources/application.yaml,resources/dockerhost.yaml,classpath:/application.yml \
     -Dspring.main.allow-bean-definition-overriding=true \
