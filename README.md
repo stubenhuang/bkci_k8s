@@ -61,7 +61,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 3. 执行build.sh
 
 ## 部署基础服务
-1. 确定本地安装有helm2 , kubectl(已经配好集群)
+1. 确定本地安装有helm3 , kubectl(已经配好集群)
 2. 进入deploy_yaml/base 
 3. 执行deploy.sh
 
