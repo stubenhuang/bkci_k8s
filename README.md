@@ -36,7 +36,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 
 ## 环境准备:
 1. 搭建好k8s集群
-2. 安装mysql5.7, redis2.8, rabbitmq3.8, es5.6, consul1.8
+2. 安装mysql5.7, redis2.8, rabbitmq3.8, es7, consul1.8
 3. 找一台物理机器安装nfs
     - 共享 /data/nfs目录 
     - mkdir /data/nfs/consul
