@@ -28,6 +28,10 @@ spec:
           env:
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                    fieldPath: status.hostIP
           volumeMounts:
             - mountPath: "/data/docker/bkci/public/ci/environment"
               name: nfs-agent-package

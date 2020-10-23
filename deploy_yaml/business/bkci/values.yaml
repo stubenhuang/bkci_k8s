@@ -22,6 +22,7 @@ mysql:
 
 consul:
   server: consul-server #consul server的host或者IP
+  datacenter: dc1
 
 env:
   ##########

@@ -29,6 +29,8 @@ spec:
               value: sample
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
+            - name: CONSUL_DATACENTER
+              value: {{ .Values.consul.datacenter }}
             {{- range $key, $value := .Values.env }}
             - name : {{ $key }}
               value : "{{ $value }}"

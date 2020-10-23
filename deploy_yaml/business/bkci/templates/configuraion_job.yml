@@ -16,6 +16,8 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ['/bin/sh','-c','/data/docker/bkci/ci/configuration/import_config.sh']
         env:
+          - name: CONSUL_SERVER
+            value: {{ .Values.consul.server }}
           - name: INSTALL_PATH
             value: /data/docker/bkci
           - name: MODULE

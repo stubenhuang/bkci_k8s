@@ -31,6 +31,10 @@ spec:
               value: {{ .Values.env.BK_CI_PRIVATE_HOST }}
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                    fieldPath: status.hostIP
           volumeMounts:
             - name: dockersock
               mountPath: /var/run/docker.sock

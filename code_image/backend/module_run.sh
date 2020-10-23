@@ -1,5 +1,5 @@
 #! /bin/sh
-nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=$CONSUL_SERVER &
+# nohup consul agent -datacenter=dc -domain=ci -data-dir=/tmp -join=$CONSUL_SERVER &
 mkdir -p /data/docker/bkci/ci/backend/logs
 java -cp boot-$module.jar \
     -server \
@@ -21,4 +21,5 @@ java -cp boot-$module.jar \
     -Dsun.jnu.encoding=UTF-8 \
     -Dfile.encoding=UTF-8 \
     -Dspring.config.location=/data/docker/bkci/ci/backend/bootstrap/bootstrap.yaml \
+    -Dspring.cloud.consul.host=$NODE_IP \
     org.springframework.boot.loader.PropertiesLauncher

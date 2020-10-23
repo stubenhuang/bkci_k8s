@@ -2,8 +2,8 @@
 mkdir -p /data/docker/bkci/ci/backend/resources
 mkdir -p /data/docker/bkci/ci/backend/logs
 
-consul kv get -http-addr=consul-ui config/application:dev/data > resources/application.yaml
-consul kv get -http-addr=consul-ui config/dockerhostci:dev/data > resources/dockerhost.yaml
+consul kv get -http-addr=$CONSUL_SERVER:8500 config/application:dev/data > resources/application.yaml
+consul kv get -http-addr=$CONSUL_SERVER:8500 config/dockerhostci:dev/data > resources/dockerhost.yaml
 
 # build init.sh to hosted which will be used in container
 hosts=$(ping -c 1 $BK_CI_PRIVATE_HOST|head -1|egrep -o "([0-9]{1,3}.){3}[0-9]{1,3}")
