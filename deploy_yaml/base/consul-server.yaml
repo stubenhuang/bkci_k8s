@@ -8,6 +8,6 @@ server:
     storageClass: nfs-consul
     bootstrapExpect: 1
 client:
-    enabled: false
+    enabled: true
 meshGateway:
     enabled: false
