@@ -15,7 +15,7 @@ spec:
         app: bkci-gateway
     spec:
       containers:
-        - image: {{ .Values.image.hub }}/gateway:{{ .Values.image.tag }}
+        - image: {{ .Values.image.hub }}/bkci-gateway:{{ .Values.image.tag }}
           name: bkci-gateway
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           workingDir: /usr/local/openresty/nginx/

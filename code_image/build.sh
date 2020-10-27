@@ -4,7 +4,7 @@ echo "先修改 bkci/test_image/bkci/scripts/bkenv.properties"
 echo "5秒后开始执行..."
 # sleep 5s
 
-
+set -e
 echo "导入环境变量开始..."
 source ../env.properties
 source bkci/scripts/bkenv.properties
@@ -19,8 +19,8 @@ cp -rf bkci/gateway/core tmp/gateway
 cp -rf gateway/gateway_run.sh tmp/
 cp -rf gateway/render_tpl tmp/
 cp -rf bkci/support-files tmp/
-docker build -f gateway/gateway.Dockerfile -t $hub/gateway:1.0 ./tmp --network=host
-docker push $hub/gateway:1.0
+docker build -f gateway/gateway.Dockerfile -t $hub/bkci-gateway:1.0 ./tmp --network=host
+docker push $hub/bkci-gateway:1.0
 echo "打包gateway镜像完成"
 
 ## 打包backend镜像
@@ -64,3 +64,5 @@ cp -rf configuration/render_tpl tmp/
 docker build -f configuration/configuration.Dockerfile -t $hub/bkci-configuration:1.0 tmp --network=host
 docker push $hub/bkci-configuration:1.0
 echo '打包配置镜像完成'
+
+set +e

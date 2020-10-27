@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 source ../env.properties
 
 linux_version="1.0"
@@ -20,3 +21,5 @@ docker tag ${hub}/bkci-jdk:${jdk_version} bkci/jdk
 docker build -f dockerfile/bkci-openresty.Dockerfile -t ${hub}/bkci-openresty:${openresty_version} . --network=host
 docker push ${hub}/bkci-openresty:${openresty_version}
 docker tag ${hub}/bkci-openresty:${openresty_version} bkci/openresty
+
+set +e
