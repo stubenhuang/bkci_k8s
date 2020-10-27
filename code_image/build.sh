@@ -1,13 +1,7 @@
-#!/bin/sh
-echo "确认目录下有解压的release包,命名为bkci"
-echo "先修改 bkci/test_image/bkci/scripts/bkenv.properties"
-echo "5秒后开始执行..."
-# sleep 5s
-
+#!/bin/bash
 set -e
 echo "导入环境变量开始..."
 source ../env.properties
-source bkci/scripts/bkenv.properties
 mkdir -p tmp && rm -rf tmp/*
 echo "导入环境变量完成"
 
