@@ -1,6 +1,6 @@
 controller: 
     image:
-        repository: xbazhen/ingress-nginx-controller
+        repository: pollyduan/ingress-nginx-controller
         digest: 
     hostNetwork: true ## TODO: 防火墙策略导致CLB无法通NodePort,所以先开启hostPort
     hostPort:
