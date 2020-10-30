@@ -51,8 +51,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 6. 在nfs服务器/data/nfs/agent-package/的jre和packages文件夹中, 根据每个目录下的README.md , 将jre.zip和unzip.exe准备好(可以在Windows的git的/usr/bin里面找到)
 7. 复制env.example.properties,命名为env.properties,修改为自己想要的变量
 8. 复制deploy_yaml/base/ingress.example.yaml, 命名为ingress.yaml, 修改自己为自己的域名
-9. 下载consul到base_image/linux/目录下(确保base_image/linux/consul可执行)
-10. 下载jdk8到 base_image/jdk/目录下 (确保base_image/jdk/bin/java可执行 , 推荐使用https://github.com/Tencent/TencentKona-8/releases)
+9. 下载jdk8到 base_image/jdk/目录下 (确保base_image/jdk/bin/java可执行 , 推荐使用https://github.com/Tencent/TencentKona-8/releases)
 
 
 ## 打包基础镜像
@@ -83,7 +82,7 @@ ingress和volume挂载(这里用的是nfs)可以跟其他业务统一处理, 这
 ## 部署业务服务
 1. 确定本地安装有helm3 , kubectl(已经配好集群)
 2. 进入deploy_yaml/business
-3. 根据自己的需要,复制values.example.yaml到values.yaml, 修改values.yaml的属性
+3. 根据自己的需要,复制bkci/values.yaml到values.yaml, 根据自己需求修改values.yaml的属性
 4. 执行deploy.sh
 
 ## 关于dockerhost

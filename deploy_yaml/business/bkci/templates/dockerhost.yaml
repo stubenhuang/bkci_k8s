@@ -29,6 +29,8 @@ spec:
           env:
             - name: BK_CI_PRIVATE_HOST
               value: {{ .Values.env.BK_CI_PRIVATE_HOST }}
+            - name: BK_CI_ENV
+              value: {{ .Values.env.BK_CI_ENV}}
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
             - name: NODE_IP

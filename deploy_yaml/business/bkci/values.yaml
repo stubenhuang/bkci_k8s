@@ -63,6 +63,8 @@ env:
   BK_CI_CONSUL_DNS_PORT: 8600   # 默认53. 无需修改. consul agent的dns port
   BK_CI_CONSUL_DOMAIN: ci   # 默认consul. 请勿修改. consul私有域名
   BK_CI_CONSUL_GRAY_IP:   # 无默认值. 废弃. 待清理配置文件及相关代码.
+  BK_CI_CONSUL_IP: 127.0.0.1
+  BK_CI_CONSUL_DEVNET_IP: 127.0.0.1
   BK_CI_CONSUL_HTTP_PORT: 8500   # 默认8500. 按需修改. consul agent的http port
   BK_CI_CONSUL_PORT: 8500   # 默认8500. 废弃. 待清理配置文件及相关代码.
   BK_CI_MYSQL_ADDR: mysql-ci.service.consul:3306   # 默认mysql-ci.service.consul:3306. 按需修改. CI专用的MySQL数据库地址, HOST:PORT形式.

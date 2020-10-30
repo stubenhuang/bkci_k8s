@@ -15,7 +15,7 @@ java -cp boot-$module.jar \
     -XX:ErrorFile=error_sys.log \
     -Dservice-suffix=ci \
     -Dloader.path="/data/docker/bkci/ci/backend/classpath/" \
-    -Dspring.profiles.active=dev \
+    -Dspring.profiles.active=$BK_CI_ENV \
     -Dspring.cloud.config.enabled=false \
     -Dservice.log.dir=/data/docker/bkci/ci/backend/logs/ \
     -Dsun.jnu.encoding=UTF-8 \

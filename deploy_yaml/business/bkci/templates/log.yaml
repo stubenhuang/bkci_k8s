@@ -23,6 +23,8 @@ spec:
           env:
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
+            - name: BK_CI_ENV
+              value: {{ .Values.env.BK_CI_ENV}}
             - name: NODE_IP
               valueFrom:
                 fieldRef:
