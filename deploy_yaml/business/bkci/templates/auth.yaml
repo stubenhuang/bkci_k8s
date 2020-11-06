@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: bkci-openapi
-  name: bkci-openapi
+    app: bkci-auth
+  name: bkci-auth
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: bkci-openapi
+      app: bkci-auth
   template:
     metadata:
       labels:
-        app: bkci-openapi
+        app: bkci-auth
     spec:
       containers:
-        - image: {{ .Values.image.hub }}/bkci-openapi:{{ .Values.image.tag }}
-          name: bkci-openapi
+        - image: {{ .Values.image.hub }}/bkci-auth:{{ .Values.image.tag }}
+          name: bkci-auth
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           workingDir: /data/docker/bkci/ci/backend/
           command: ['/bin/sh','-c','/data/docker/bkci/ci/backend/module_run.sh']
@@ -31,3 +31,14 @@ spec:
               valueFrom:
                 fieldRef:
                     fieldPath: status.hostIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bkci-auth
+spec:
+  selector:
+    app: bkci-auth
+  ports:
+    - protocol: TCP
+      port: 21936

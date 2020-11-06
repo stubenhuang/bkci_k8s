@@ -5,7 +5,7 @@ for SQL in /data/docker/bkci/ci/configuration/support-files/sql/*.sql; do mysql 
 
 ## 初始化配置
 ./render_tpl -m ci ./support-files/templates/*.yml
-backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket dockerhost environment)
+backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket dockerhost environment auth)
 cd ..
 for var in ${backends[@]};
 do

@@ -19,7 +19,7 @@ echo "打包gateway镜像完成"
 
 ## 打包backend镜像
 echo "打包backend镜像开始..."
-backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment dockerhost)
+backends=(process dispatch store artifactory image log notify openapi plugin quality repository ticket project misc websocket environment dockerhost auth)
 for var in ${backends[@]};
 do
     echo "build $var start..."

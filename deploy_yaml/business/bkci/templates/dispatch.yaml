@@ -34,6 +34,8 @@ spec:
               value: {{ .Values.consul.server }}
             - name: BK_CI_ENV
               value: {{ .Values.env.BK_CI_ENV}}
+            - name: BK_CI_CONSUL_DISCOVERY_TAG
+              value: {{ .Values.env.BK_CI_CONSUL_DISCOVERY_TAG}}
             - name: NODE_IP
               valueFrom:
                 fieldRef:

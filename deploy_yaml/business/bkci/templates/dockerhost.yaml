@@ -31,6 +31,8 @@ spec:
               value: {{ .Values.env.BK_CI_PRIVATE_HOST }}
             - name: BK_CI_ENV
               value: {{ .Values.env.BK_CI_ENV}}
+            - name: BK_CI_CONSUL_DISCOVERY_TAG
+              value: {{ .Values.env.BK_CI_CONSUL_DISCOVERY_TAG}}
             - name: CONSUL_SERVER
               value: {{ .Values.consul.server }}
             - name: NODE_IP

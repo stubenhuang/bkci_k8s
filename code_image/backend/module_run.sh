@@ -13,7 +13,7 @@ java -cp boot-$module.jar \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath=oom.hprof \
     -XX:ErrorFile=error_sys.log \
-    -Dservice-suffix=ci \
+    -Dservice-suffix=$BK_CI_CONSUL_DISCOVERY_TAG \
     -Dloader.path="/data/docker/bkci/ci/backend/classpath/" \
     -Dspring.profiles.active=$BK_CI_ENV \
     -Dspring.cloud.config.enabled=false \
